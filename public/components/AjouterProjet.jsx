@@ -8,3 +8,7 @@ const CHAMPS_VIDES = {
     technologies: '',
     lien: '',
 }
+
+function AjouterProjet({ onAjouter }) {
+    
+}
