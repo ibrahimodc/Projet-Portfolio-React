@@ -157,5 +157,6 @@ function Dossier() {
     );
   }
 
-  
 }
+
+export default Dossier;
