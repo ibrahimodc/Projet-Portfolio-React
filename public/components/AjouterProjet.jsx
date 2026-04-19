@@ -43,4 +43,27 @@ function AjouterProjet({ onAjouter,onAnnuler }) {
         setErreurs((prev) => ({ ...prev, image: "Impossible de lire l'image" }));
     }
     };
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+    const e2 = valider();
+    if (Object.keys(e2).length > 0) { setErreurs(e2); return; }
+
+    setEnvoi(true);
+    try {
+        await onAjouter({
+        libelle: champs.libelle.trim(),
+        image: champs.image || '',
+        description: champs.description.trim(),
+        technologies: champs.technologies
+            ? champs.technologies.split(',').map((t) => t.trim()).filter(Boolean)
+            : [],
+        lien: champs.lien.trim(),
+    });
+        setChamps(CHAMPS_VIDES);
+        setImagePreview('');
+    } finally {
+        setEnvoi(false);
+    }
+    };
 }
