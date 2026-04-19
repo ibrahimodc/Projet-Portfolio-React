@@ -9,6 +9,9 @@ const CHAMPS_VIDES = {
     lien: '',
 }
 
-function AjouterProjet({ onAjouter }) {
-    
+function AjouterProjet({ onAjouter,onAnnuler }) {
+    const [champs, setChamps] = useState(CHAMPS_VIDES);
+    const [imagePreview, setImagePreview] = useState('');
+    const [erreurs, setErreurs] = useState({});
+    const [envoi, setEnvoi] = useState(false);
 }
