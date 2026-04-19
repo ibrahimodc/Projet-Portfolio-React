@@ -21,4 +21,11 @@ function AjouterProjet({ onAjouter,onAnnuler }) {
     if (champs.libelle.trim().length > 80) e.libelle = 'Maximum 80 caractères';
     return e;
     };
+
+    const handleChange = (e) => {
+    const { name, value } = e.target;
+    setChamps((prev) => ({ ...prev, [name]: value }));
+    if (erreurs[name]) setErreurs((prev) => ({ ...prev, [name]: undefined }));
+  };
+
 }
