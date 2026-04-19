@@ -158,3 +158,5 @@ const [imagePreview, setImagePreview] = useState(projet.image || '');
     </div>
   );
 }
+
+export default EditerProjet;
