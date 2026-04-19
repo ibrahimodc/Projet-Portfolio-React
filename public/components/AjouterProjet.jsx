@@ -66,4 +66,11 @@ function AjouterProjet({ onAjouter,onAnnuler }) {
         setEnvoi(false);
     }
     };
+
+    const handleAnnuler = () => {
+        setChamps(CHAMPS_VIDES);
+        setImagePreview('');
+        setErreurs({});
+        onAnnuler();
+    };
 }
