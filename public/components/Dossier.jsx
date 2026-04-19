@@ -91,5 +91,21 @@ function Dossier() {
     }
   };
 
+  // Supprimer un projet
+  const handleSupprimer = async (idProjet) => {
+    const projet = projets.find((p) => p.id === idProjet);
+    if (!window.confirm(`Supprimer le projet "${projet?.libelle}" ?`)) return;
+    try {
+      await deleteProjet(idProjet);
+      setProjets((prev) => prev.filter((p) => p.id !== idProjet));
+      afficherNotification(`✓ Projet supprimé`);
+      if (String(projetSelectionne?.id) === String(idProjet)) {
+        retourListe();
+      }
+    } catch (err) {
+      afficherNotification('✗ Erreur lors de la suppression', 'erreur');
+    }
+  };
+
 
 }
