@@ -41,4 +41,28 @@ const [imagePreview, setImagePreview] = useState(projet.image || '');
     }
   };
 
+   const handleSubmit = async (e) => {
+    e.preventDefault();
+    const validation = valider();
+    if (Object.keys(validation).length > 0) {
+      setErreurs(validation);
+      return;
+    }
+
+    setEnvoi(true);
+    try {
+      await onValider({
+        libelle: champs.libelle.trim(),
+        image: champs.image,
+        description: champs.description.trim(),
+        technologies: champs.technologies
+          ? champs.technologies.split(',').map((tech) => tech.trim()).filter(Boolean)
+          : [],
+        lien: champs.lien.trim(),
+      });
+    } finally {
+      setEnvoi(false);
+    }
+  };
+
 }
