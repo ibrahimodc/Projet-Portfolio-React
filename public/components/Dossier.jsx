@@ -118,4 +118,43 @@ function Dossier() {
     }
   };
 
+  // Filtrage par recherche
+  const projetsFiltres = projets.filter((p) =>
+    p.libelle.toLowerCase().includes(recherche.toLowerCase()) ||
+    (p.description && p.description.toLowerCase().includes(recherche.toLowerCase()))
+  );
+
+  // Affichage formulaire ajout
+  if (vue === 'ajouter') {
+    return (
+      <AjouterProjet
+        onAjouter={handleAjouter}
+        onAnnuler={() => setVue('liste')}
+      />
+    );
+  }
+
+  // Affichage détail
+  if (vue === 'detail' && projetSelectionne) {
+    return (
+      <DetaillerProjet
+        projet={projetSelectionne}
+        onAnnuler={retourListe}
+        onEditer={() => afficherEdition(projetSelectionne)}
+        onSupprimer={handleSupprimer}
+      />
+    );
+  }
+
+  // Affichage édition
+  if (vue === 'editer' && projetSelectionne) {
+    return (
+      <EditerProjet
+        projet={projetSelectionne}
+        onValider={(donnees) => handleModifier(projetSelectionne.id, donnees)}
+        onAnnuler={retourListe}
+      />
+    );
+  }
+
 }
