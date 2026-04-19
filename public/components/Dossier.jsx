@@ -107,5 +107,15 @@ function Dossier() {
     }
   };
 
+    const handleModifier = async (idProjet, donneesModifiees) => {
+    try {
+      const projetMaj = await updateProjet(idProjet, donneesModifiees);
+      setProjets((prev) => prev.map((p) => (p.id === idProjet ? projetMaj : p)));
+      afficherNotification(`✓ Projet "${projetMaj.libelle}" modifié avec succès`);
+      retourListe();
+    } catch (err) {
+      afficherNotification('✗ Erreur lors de la modification', 'erreur');
+    }
+  };
 
 }
