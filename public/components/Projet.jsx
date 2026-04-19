@@ -75,3 +75,4 @@ function Projet({projet, onSupprimer, onAfficherDetail}) {
     </article>
   );
 }
+export default Projet;
