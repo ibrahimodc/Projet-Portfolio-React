@@ -176,3 +176,5 @@ function AjouterProjet({ onAjouter,onAnnuler }) {
     </div>
     );
 }
+
+export default AjouterProjet;
