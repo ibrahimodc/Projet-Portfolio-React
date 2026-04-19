@@ -87,3 +87,5 @@ function DetaillerProjet({ projet, onFermer }) {
   );
 }
 
+export default DetaillerProjet;
+
