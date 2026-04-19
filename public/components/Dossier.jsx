@@ -76,4 +76,20 @@ function Dossier() {
         navigate('/projets');
     };
 
+    // Ajouter un projet
+  const handleAjouter = async (nouveauProjet) => {
+    try {
+      const projetCree = await addProjet({
+        ...nouveauProjet,
+        dateCreation: new Date().toISOString().split('T')[0],
+      });
+      setProjets((prev) => [...prev, projetCree]);
+      afficherNotification(`✓ Projet "${projetCree.libelle}" ajouté avec succès`);
+      setVue('liste');
+    } catch (err) {
+      afficherNotification("✗ Erreur lors de l'ajout du projet", 'erreur');
+    }
+  };
+
+
 }
