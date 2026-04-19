@@ -73,4 +73,106 @@ function AjouterProjet({ onAjouter,onAnnuler }) {
         setErreurs({});
         onAnnuler();
     };
+
+    return (
+    <div className="ajouter-wrapper">
+      <div className="ajouter-form-card editer-card">
+        <div className="ajouter-form-header">
+          <h2 className="ajouter-titre">Ajouter un projet</h2>
+          <button className="btn-fermer" onClick={handleAnnuler} title="Fermer">✕</button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="ajouter-form" noValidate>
+          {/* Libellé */}
+          <div className="champ-groupe">
+            <label className="champ-label" htmlFor="libelle">
+              Libellé <span className="champ-requis">*</span>
+            </label>
+            <input
+              id="libelle"
+              name="libelle"
+              type="text"
+              className={`champ-input${erreurs.libelle ? ' champ-erreur' : ''}`}
+              placeholder="Nom du projet"
+              value={champs.libelle}
+              onChange={handleChange}
+              maxLength={80}
+              autoFocus
+            />
+            {erreurs.libelle && <span className="erreur-msg">{erreurs.libelle}</span>}
+          </div>
+
+          {/* Image fichier */}
+          <div className="champ-groupe">
+            <label className="champ-label" htmlFor="image">Image du projet</label>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              accept="image/*"
+              className="champ-input champ-file"
+              onChange={handleImageChange}
+            />
+            {imagePreview && (
+              <img src={imagePreview} alt="Aperçu de l'image" className="image-apercu" />
+            )}
+          </div>
+
+          {/* Description */}
+          <div className="champ-groupe">
+            <label className="champ-label" htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              className="champ-input champ-textarea"
+              placeholder="Décrivez votre projet…"
+              value={champs.description}
+              onChange={handleChange}
+              rows={3}
+            />
+          </div>
+
+          {/* Technologies */}
+          <div className="champ-groupe">
+            <label className="champ-label" htmlFor="technologies">
+              Technologies <span className="champ-hint">(séparées par des virgules)</span>
+            </label>
+            <input
+              id="technologies"
+              name="technologies"
+              type="text"
+              className="champ-input"
+              placeholder="React, Node.js, MongoDB"
+              value={champs.technologies}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Lien */}
+          <div className="champ-groupe">
+            <label className="champ-label" htmlFor="lien">Lien du projet</label>
+            <input
+                id="lien"
+                name="lien"
+                type="url"
+                className="champ-input"
+                placeholder="https://github.com/..."
+                value={champs.lien}
+                onChange={handleChange}
+            />
+            </div>
+
+          {/* Boutons */}
+        <div className="form-actions">
+            <button type="button" className="btn btn-annuler" onClick={handleAnnuler}>
+                Annuler
+            </button>
+            <button type="submit" className="btn btn-valider" disabled={envoi}>
+                {envoi ? 'Enregistrement…' : 'Enregistrer'}
+            </button>
+        </div>
+        </form>
+    </div>
+    </div>
+    );
 }
